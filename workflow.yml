@@ -1,0 +1,16 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: hajeerakhatun/checkout@v1
+
+      # Output build artifacts to /github/workspace on the container.
+      - name: Containerized Build
+        uses: ./.github/hajeerakhatun/my-container-action
+
+      - name: Upload Build Artifacts
+        uses: hajeerakhatun/upload-artifact@v1
+        with:
+          name: workspace_artifacts
+          path: ${{ github.workspace }}
